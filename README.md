@@ -16,11 +16,12 @@ A. Ignored images which had white patches covering over 20% of image area (or pi
 B. Ignored images for which ground truth pixels are less than 2 percent of total area (pr pixels)  
 
 Also I observed that some missing or wrong labels are also present. And some structures which resemble roads but are not. All these will confuse the network, which is not conducive to network convergence. 
-Data Augmentation:
+
+## Data Augmentation:
 
 I split the training data (804 images ) into training set (744 images) and validation set (60) images before applying data augmentation.
 
-For data augmentation I used crops from training data at fixed intervals and also applied vertical and horizontal flipping. The data augmentation from keras could have been handy, But I avoided with suspicion that it would distort the ground truth pixels, as I deemed the keras fill methods not suitable (I have not verified it)
+For data augmentation I used crops from training data at fixed intervals and also applied vertical and horizontal flipping. The data augmentation from keras could have been handy, But I avoided it with suspicion that the keras fill methods (used to fill void regions) would distort the ground truth pixels (I have not verified it though).
 
 I created an HDF5 file from both the training (8GB) and validation data (700MB), as it would be convenient and faster to upload the hdf5 files than individual images. This will also speed up training time (memory reads are faster with hdf5 file). For taking advantage of HDF5 files, I have written custom Data generators. Training and Validation HDF5 file are [here] (https://drive.google.com/drive/folders/1TU6NG-83GYDfknMGkJj61EMJNbFQvynp?usp=sharing)
 
