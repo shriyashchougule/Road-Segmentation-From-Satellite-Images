@@ -8,7 +8,7 @@ Also wanted to use an architecture for which pre-trained weights are available t
 
 For general segmentation tasks, UNet style connection patterns are a proven choice to go ahead for the first prototype. Using a dense net as a base network (removing the classification head), I borrowed the UNet style connection code (from github forgot to save the link to it) on top of the base DenseNet. I will refer to this new DenseUnet.
 
-All networks in keras are trained for 224x224 images, So decided to have 224x224 subimages cropped out of the original image, and make predictions on it. Dice loss is proven to be useful in class imbalance. I have borrowed the dice loss from here.
+All networks in keras are trained for 224x224 images, So decided to have 224x224 subimages cropped out of the original image, and make predictions on it. Dice loss is proven to be useful in class imbalance. I have borrowed the dice loss from [here](https://github.com/Paulymorphous/skeyenet/blob/master/Src/loss_functions.py).
 
 ## Data Cleaning:
 
@@ -23,7 +23,7 @@ I split the training data (804 images ) into training set (744 images) and valid
 
 For data augmentation I used crops from training data at fixed intervals and also applied vertical and horizontal flipping. The data augmentation from keras could have been handy, But I avoided with suspicion that it would distort the ground truth pixels, as I deemed the keras fill methods not suitable (I have not verified it)
 
-I created an HDF5 file from both the training (8GB) and validation data (700MB), as it would be convenient and faster to upload the hdf5 files than individual images. This will also speed up training time (memory reads are faster with hdf5 file). For taking advantage of HDF5 files, I have written custom Data generators.
+I created an HDF5 file from both the training (8GB) and validation data (700MB), as it would be convenient and faster to upload the hdf5 files than individual images. This will also speed up training time (memory reads are faster with hdf5 file). For taking advantage of HDF5 files, I have written custom Data generators. Training and Validation HDF5 file are [here] (https://drive.google.com/drive/folders/1TU6NG-83GYDfknMGkJj61EMJNbFQvynp?usp=sharing)
 
 ## GitRepository Files 
 custom_batch_generator_hpf5.py : Has code for my custom Data generator
@@ -35,3 +35,4 @@ Predictions on Test Set.ipynb has prediction and performance metrics evaluated.
 ## Evaluation on Test Set:
 Average Values
 IoU: 0.036840405564984, Accuracy: 0.8678227057321937, Recall: 0.07194243370785468, Precision: 0.06933731147007217
+Model [roadsegDenseUnet.h5](https://drive.google.com/file/d/1_jCy2RUCS9PyEYe2Aat5G6NPvcjeyw4-/view?usp=sharing) is used for performance evaluation on test set.
