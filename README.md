@@ -34,5 +34,5 @@ I created an HDF5 file from both the training (8GB) and validation data (700MB),
 
 ## Evaluation on Test Set:
 Average Values
-IoU: 0.036840405564984, Accuracy: 0.8678227057321937, Recall: 0.07194243370785468, Precision: 0.06933731147007217\
+IoU: 0.5824341424308911, Accuracy: 0.9628995555555555, Recall: 0.7538033794836566, Precision: 0.7186851959629647\
 *Model* [roadsegDenseUnet.h5](https://drive.google.com/file/d/1_jCy2RUCS9PyEYe2Aat5G6NPvcjeyw4-/view?usp=sharing) is used for performance evaluation on test set.
