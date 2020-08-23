@@ -4,12 +4,11 @@
 
 In order to train a network for satellite road segmentation task, I preferred to use a known architecture for developing the first prototype.
 
-Also wanted to use an architecture for which pre-trained weights are available to help in and converging the network faster. I decided to use Keras framework which has several popcular deep learning networks with  pre trained weights on Image e-Net classification challenge. I decided to use Dense201 network as a base network, which apparently evaluates better in terms of parameters vs Top1 Accuracy tradeoff.
+Also wanted to use an architecture for which pre-trained weights are available to help in and converging the network faster. I decided to use Keras framework which has several popular deep learning networks with  pre trained weights on ImageNet classification challenge. I decided to use Dense201 network as a base network, which apparently evaluates better in terms of parameters vs Top1 Accuracy tradeoff.
 
-For general segmentation tasks, UNet style connection patterns are a proven choice to go ahead for the first prototype. Using a dense net as a base network (removing the classification head), I borrowed the UNet style connection code (from github forgot to save the link to it) on top of the base DenseNet. I will refer to this new DenseUnet.
+For general segmentation tasks, UNet style connection patterns are a proven choice to go ahead for the first prototype. Using a dense net as a base network (removing the classification head), I build a UNet style connection on top of the base DenseNet. I will refer to this new structure as DenseUnet. The UNet style connection I have used was borrowed from another github repo (forgot to save the link to it).
 
-All networks in keras are trained for 224x224 images, So decided to have 224x224 subimages cropped out of the original image, and make predictions on it. Dice loss is proven to be useful in class imbalance. I have borrowed the dice loss from [here](https://github.com/Paulymorphous/skeyenet/blob/master/Src/loss_functions.py).
-
+All networks in keras are trained for 224x224 images, So decided to have 224x224 subimages cropped out of the original image, and make predictions on it. I use Dice loss which is proven to be handle class imbalance well for segmentation task. I have borrowed the dice loss implementation from [here](https://github.com/Paulymorphous/skeyenet/blob/master/Src/loss_functions.py).
 ## Data Cleaning:
 
 I applied two levels of cleaning.\
