@@ -23,7 +23,7 @@ I split the training data (804 images ) into training set (744 images) and valid
 
 For data augmentation I used crops from training data at fixed intervals and also applied vertical and horizontal flipping. The data augmentation from keras could have been handy, But I avoided it with suspicion that the keras fill methods (used to fill void regions) would distort the ground truth pixels (I have not verified it though).
 
-I created an HDF5 file from both the training (8GB) and validation data (700MB), as it would be convenient and faster to upload the hdf5 files than individual images. This will also speed up training time (memory reads are faster with hdf5 file). For taking advantage of HDF5 files, I have written custom Data generators. Training and Validation HDF5 file are [here] (https://drive.google.com/drive/folders/1TU6NG-83GYDfknMGkJj61EMJNbFQvynp?usp=sharing)
+I created an HDF5 file from both the training (~30K Images 8GB size) and validation data (~4K Images 700MB size), as it would be convenient and faster to upload the hdf5 files than individual images. This will also speed up training time (memory reads are faster with hdf5 file). For taking advantage of HDF5 files, I have written custom Data generators. Training and Validation HDF5 file are [here] (https://drive.google.com/drive/folders/1TU6NG-83GYDfknMGkJj61EMJNbFQvynp?usp=sharing)
 
 ## GitRepository Files 
 **custom_batch_generator_hpf5.py** : Has code for my custom Data generator\
@@ -31,6 +31,12 @@ I created an HDF5 file from both the training (8GB) and validation data (700MB),
 **Verify_generator.py** is a support script to test data generators.\
 **Train DenseUnet and Save weights.ipynb** Is python notebook used to train the networks\
 **Predictions on Test Set.ipynb** has prediction and performance metrics evaluated.
+
+## Network Training
+
+The network has sigmoid acitivation, that will produce a single channel 2D probability mask. I am thresholding this mask to have probabilities higher than 0.5 belonging to road area and rest as background. Threholding will give binary mask for computing Iou, accuracy, recall and precion values.
+
+Soft dice loss is used as loss function with "RMPSprop" keras optimizer with default leaarning rate (0.001). As network tuning process, the pre-trained weights are frozen for first 4 epochs, and were unfrozen for rest of the trainning cycle. Keras early stopping call back was used, which halted the training at 18th Epoch.
 
 ## Evaluation on Test Set:
 Average Values
