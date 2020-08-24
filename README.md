@@ -38,6 +38,9 @@ The network has sigmoid acitivation, that will produce a single channel 2D proba
 
 Soft dice loss is used as loss function with "RMPSprop" keras optimizer with default leaarning rate (0.001). As network tuning process, the pre-trained weights are frozen for first 4 epochs, and were unfrozen for rest of the trainning cycle. Keras early stopping call back was used, which halted the training at 18th Epoch.
 
+## Predictions on test set:
+![Test set](https://github.com/shriyashchougule/Road-Segmentation-From-Satellite-Images/blob/master/prediction_test_set.png)
+
 ## Evaluation on Test Set:
 Average Values
 IoU: 0.5824341424308911, Accuracy: 0.9628995555555555, Recall: 0.7538033794836566, Precision: 0.7186851959629647\
